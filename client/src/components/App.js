@@ -7,11 +7,11 @@ import HomePage from "./HomePage";
 import ShopPage from "./ShopPage";
 
 const App = () => {
-    useEffect(() => {
-        fetch("/hi")
-        .then(res => res.json())
-        .then(data => console.log(data));
-    }, [])
+    // useEffect(() => {
+    //     fetch("/hi")
+    //     .then(res => res.json())
+    //     .then(data => console.log(data));
+    // }, [])
 
     return (
         <BrowserRouter>

@@ -25,6 +25,17 @@ const Main = styled.nav`
     gap: 10px;
     justify-content: space-evenly;
     margin-bottom: 20px;
+
+    a {
+        background-color: antiquewhite;
+        padding: 10px;
+        text-decoration: none;
+        border-radius: 10px;
+    }
+
+    a:hover {
+        background-color: aliceblue;
+    }
 `
 
 export default Header

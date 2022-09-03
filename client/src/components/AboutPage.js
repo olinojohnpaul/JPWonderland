@@ -3,7 +3,7 @@ import styled from "styled-components"
 const AboutPage = () => {
     return (
         <Main>
-            About
+            This is a website that I made for my final project of Concordia Bootcamp.
         </Main>
     )
 }
