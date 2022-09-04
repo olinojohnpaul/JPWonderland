@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+// import {useEffect} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AboutPage from "./AboutPage";
 import Game1 from "./Game1";

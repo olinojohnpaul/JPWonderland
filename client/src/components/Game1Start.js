@@ -2,15 +2,43 @@ import { useState } from "react"
 import styled from "styled-components"
 
 // This component is when the game starts
-const Game1Start = () => {
-    // Ingredients as shown to the user
+const Game1Start = ({topPick, midPick, botPick, ranOrder}) => {
+    // States necessary
     const [top, setTop] = useState("")
     const [mid, setMid] = useState("")
     const [bot, setBot] = useState("")
+    const [score, setScore] = useState(0)
+    const [thanks, setThanks] = useState("")
+
+    // Failure function
+    const youFailed = () => {
+        setThanks("That's not the drink I ordered, try again 😠")
+        setScore(score - 1)
+        setTop("")
+        setMid("")
+        setBot("")
+    }
 
     // Submit button to submit drink
     const submitDrink = () => {
-        window.alert("You submitted the drink")
+        if (top === topPick) {
+            if (mid === midPick) {
+                if (bot === botPick) {
+                    setThanks("That's my drink, thank you! 😊")
+                    setScore(score + 1)
+                    setTop("")
+                    setMid("")
+                    setBot("")
+                    ranOrder()
+                } else {
+                    youFailed()
+                }
+            } else {
+                youFailed()
+            }
+        } else {
+            youFailed()
+        }
     }
 
     return (
@@ -48,6 +76,12 @@ const Game1Start = () => {
                 </DrinkWrap>
             </div>
             <button onClick={submitDrink}>Submit Drink</button>
+            <div>
+                Score: {score}
+            </div>
+            <div>
+                {thanks}
+            </div>
         </Main>
     )
 }

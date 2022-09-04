@@ -21,13 +21,18 @@ const Game1 = () => {
         return Math.floor((Math.random() * end) + start)
     }
 
-    // This function starts the game
-    const startGame = () => {
-        setGame(true)
+    // Random order generator
+    const ranOrder = () => {
         setTop(topIngr[ranNum(0, topIngr.length)])
         setMid(midIngr[ranNum(0, topIngr.length)])
         setBot(botIngr[ranNum(0, topIngr.length)])
+    }
+
+    // This function starts the game
+    const startGame = () => {
+        setGame(true)
         setCustomer("😀 I want...")
+        ranOrder()
     }
 
     return (
@@ -39,7 +44,12 @@ const Game1 = () => {
             <div>Bottom: <span>{bot}</span></div>
             {
                 game
-                ? <Game1Start />
+                ? <Game1Start 
+                topPick={top}
+                midPick={mid}
+                botPick={bot}
+                ranOrder={ranOrder}
+                />
                 : <div>Click the Start Game button</div>
             }
         </Main>
