@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import Game1Start from "./Game1Start"
 import useInterval from "../hooks/use-interval";
+import Game1Over from "./Game1Over";
 
 // This component is for the Bubble Tea Game
 const Game1 = () => {
@@ -14,7 +15,7 @@ const Game1 = () => {
     const [timer, setTimer] = useState("")
     const [highscore, setHighscore] = useState("")
     const [gameover, setGameover] = useState(false)
-    const [gameoverbutton, setGameoverbutton] = useState(true)
+    const [myScore, setMyScore] = useState(0)
 
     // Gets high scores
     useEffect(() => {
@@ -45,12 +46,9 @@ const Game1 = () => {
         setGame(true)
         setCustomer("😀 I want...")
         ranOrder()
-        setTimer(2)
-    }
-
-    // This function handles gameovers
-    const handleGameover = () => {
-        window.location.replace("/bubble-tea-game/gameover")
+        setTimer(15)
+        setGameover(false)
+        document.getElementById("bg-song").play()
     }
 
     // This is the timer
@@ -58,32 +56,43 @@ const Game1 = () => {
         if (timer > 0 ) {
             setTimer(timer - 1)
         } else if (timer === 0) {
+            // Game over
             setGameover(true)
-            setGameoverbutton(false)
+            setGame(false)
+            setCustomer("😞 Business closed huh?")
+            setTop("")
+            setMid("")
+            setBot("")
         }
     }, 1000)
 
     return (
         <Main>
+            <audio id="bg-song" src="/sounds/click.mp3" />
+
             <button onClick={startGame} disabled={game}>Start Game</button>
-            <button onClick={handleGameover} disabled={gameoverbutton}>Game Over</button>
             {
                 highscore
                 ?
-                highscore.map(elem => {
+                <HighScore>
+                High Scores:
+                {highscore.map(elem => {
                     return (
                         <>
                             <div>{elem.name}'s score is {elem.score} points</div>
                         </>
                     )
-                })
+                })}
+                </HighScore>
                 :
                 <div>High Score List Loading...</div>
             }
             <div>{customer}</div>
-            <div>Top: <span>{top}</span></div>
-            <div>Middle: <span>{mid}</span></div>
-            <div>Bottom: <span>{bot}</span></div>
+            <Order>
+                <div>Top: <span>{top}</span></div>
+                <div>Middle: <span>{mid}</span></div>
+                <div>Bottom: <span>{bot}</span></div>
+            </Order>
             {
                 game
                 ? <Game1Start 
@@ -92,9 +101,19 @@ const Game1 = () => {
                 botPick={bot}
                 ranOrder={ranOrder}
                 timer={timer}
+                setTimer={setTimer}
                 gameover={gameover}
+                myScore={myScore}
+                setMyScore={setMyScore}
                 />
-                : <div>Click the Start Game button</div>
+                : <div>Click Start Game to start game</div>
+            }
+            <div>Score: {myScore}</div>
+            {
+                gameover &&
+                <Game1Over 
+                    myScore={myScore}
+                />
             }
         </Main>
     )
@@ -109,6 +128,20 @@ const Main = styled.div`
     span {
         font-weight: bold;
     }
+`
+
+const HighScore = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px solid lightblue;
+    padding: 5px;
+`
+
+const Order = styled.div`
+    border: 2px solid lightgreen;
+    padding: 5px;
+    text-align: center;
 `
 
 export default Game1

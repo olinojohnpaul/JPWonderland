@@ -14,7 +14,7 @@ const db = client.db("final-project")
 
 // Get all high scores
 const getScores = async (req, res) => {
-    await client.connect();
+    await client.connect()
 
     try {
         const result = await db.collection("scores").find().toArray();
@@ -29,6 +29,30 @@ const getScores = async (req, res) => {
     client.close()
 };
 
+// Post high score
+const postScore = async (req, res) => {
+    const newScore = {
+        _id: uuidv4(),
+        ...req.body,
+    }
+
+    await client.connect()
+
+    try {
+        const result = await db.collection("scores").insertOne(newScore)
+        res.status(200).json({
+            status: 200,
+            data: result,
+            info: newScore,
+        })
+    } catch (err) {
+        console.log(err)
+    }
+
+    client.close()
+}
+
 module.exports = {
     getScores,
+    postScore,
 };

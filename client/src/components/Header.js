@@ -16,6 +16,9 @@ const Header = () => {
             <Link to="/about">
                 About
             </Link>
+            <audio controls>
+                <source src="/sounds/ShilohDynastyImagination.mp3" />
+            </audio>
         </Main>
     )
 }

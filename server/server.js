@@ -2,12 +2,18 @@ const express = require("express");
 
 const {
     getScores,
+    postScore,
 } = require("./handlers");
 
 // This is how I express my backend
 express()
+    .use(express.json())
+
     // Getting all scores endpoint
     .get("/get-scores", getScores)
+
+    // Posting high score to mongodb
+    .post("/post-score", postScore)
 
     // Catches any excess endpoints
     .get("*", (req, res) => {

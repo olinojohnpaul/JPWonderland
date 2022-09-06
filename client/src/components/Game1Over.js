@@ -1,34 +1,35 @@
 import { useState } from "react"
 import styled from "styled-components"
 import Input from "./Input"
+import gameOver from "../assets/game-over.jpg"
 
-const Game1Over = () => {
+const Game1Over = ({myScore}) => {
     // Necessary states
     const [formData, setFormData] = useState({})
 
     const handleSubmit = (e, formData) => {
-        console.log("click")
-        e.preventDefault();
+        e.preventDefault()
+
         const newFormData = {
-            name: formData.name,
+            name: formData.firstName,
+            score: myScore,
         }
 
-
         // Sending player info to mongodb
-
-        // fetch("/post-score", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(newFormData),
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data !== null) {
-        //             window.location.alert("Score posted")
-        //         }
-        //     })
+        fetch("/post-score", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newFormData),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data !== null) {
+                    window.alert("Thank you for playing!")
+                    window.location.reload()
+                }
+            })
     }
 
     // Passing form info to the FormData state 
@@ -41,18 +42,19 @@ const Game1Over = () => {
 
     return (
         <Main>
-            Game Over
+            <div className="gameover">Game Over</div>
+            <div>Name</div>
             <Form onSubmit={(e) => handleSubmit(e, formData)}>
-                <Input 
-                    type="text"
+                <Input
+                    type="text" 
                     placeholder="AAA"
-                    name={"name"}
+                    name={"firstName"}
                     required={true}
                     handleChange={handleChange}
                 />
-                <div>Score: </div>
                 <button type="submit">Submit</button>
             </Form>
+            <img src={gameOver} alt="game-over-shrek" />
         </Main>
     )
 }
@@ -62,9 +64,14 @@ const Main = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 5px;
+
+    .gameover {
+        font-weight: bold;
+        font-size: large;
+    }
 `
 
-const Form = styled.div`
+const Form = styled.form`
     display: flex;
     flex-direction: column;
     text-align: center;
