@@ -13,10 +13,13 @@ const Game1Start = ({topPick, midPick, botPick, ranOrder, timer, setTimer, gameo
     // Failure function
     const youFailed = () => {
         setThanks("That's not the drink I ordered, try again 😠")
-        setMyScore(myScore - 1)
         setTop("")
         setMid("")
         setBot("")
+
+        if (myScore !== 0) {
+            setMyScore(myScore - 100)
+        }
     }
 
     // Submit button to submit drink
@@ -26,12 +29,12 @@ const Game1Start = ({topPick, midPick, botPick, ranOrder, timer, setTimer, gameo
             if (mid === midPick) {
                 if (bot === botPick) {
                     setThanks("That's my drink, thank you! 😊")
-                    setMyScore(myScore + 1)
+                    setMyScore(myScore + 100)
                     setTop("")
                     setMid("")
                     setBot("")
                     ranOrder()
-                    
+                    document.getElementById("click2").play()
                 } else {
                     youFailed()
                 }
@@ -43,10 +46,16 @@ const Game1Start = ({topPick, midPick, botPick, ranOrder, timer, setTimer, gameo
         }
 
         // Next level/stage
-        if (myScore === 4) {
+        if (myScore === 400) {
             setStage(2)
-        } else if (myScore === 9) {
+        } else if (myScore === 900) {
             setStage(3)
+        } else if (myScore === 1400) {
+            setStage(4)
+        } else if (myScore === 1900) {
+            setStage(5)
+        } else if (myScore === 2400) {
+            setStage(6)
         }
 
         // Harder difficulty based on stage
@@ -56,6 +65,12 @@ const Game1Start = ({topPick, midPick, botPick, ranOrder, timer, setTimer, gameo
             setTimer (10)
         } else if (stage === 3) {
             setTimer(5)
+        } else if (stage === 4) {
+            setTimer(4)
+        } else if (stage === 5) {
+            setTimer(3)
+        } else if (stage === 6) {
+            setTimer(2)
         }
     }
 
@@ -94,7 +109,7 @@ const Game1Start = ({topPick, midPick, botPick, ranOrder, timer, setTimer, gameo
                 </DrinkWrap>
             </div>
             <button onClick={submitDrink} disabled={gameover}>Submit Drink</button>
-            <div>
+            <div className="timer">
                 Timer: {timer}
             </div>
             <div>
@@ -123,6 +138,12 @@ const Main = styled.div`
         display: flex;
         gap: 10px;
         justify-content: center;
+    }
+
+    .timer {
+        font-size: 30px;
+        font-weight: bold;
+        color: red;
     }
 `
 

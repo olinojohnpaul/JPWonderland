@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styled from "styled-components"
 import Game1Start from "./Game1Start"
 import useInterval from "../hooks/use-interval";
 import Game1Over from "./Game1Over";
 
 // This component is for the Bubble Tea Game
-const Game1 = () => {
+const Game1 = ({highscore}) => {
     // Some necessary states
     const [game, setGame] = useState(false)
     const [top, setTop] = useState("")
@@ -13,16 +13,13 @@ const Game1 = () => {
     const [bot, setBot] = useState("")
     const [customer, setCustomer] = useState("🤔 Hmm...")
     const [timer, setTimer] = useState("")
-    const [highscore, setHighscore] = useState("")
     const [gameover, setGameover] = useState(false)
     const [myScore, setMyScore] = useState(0)
 
-    // Gets high scores
-    useEffect(() => {
-        fetch("/get-scores")
-            .then(res => res.json())
-            .then(data => setHighscore(data.data))
-    }, [])
+    // Sorts scores by highest to lowest
+    if (highscore) {
+        highscore.sort((first, second) => second.score - first.score)
+    }
 
     // Ingredient list
     const topIngr = ["Pudding", "Whipped Cream", "Foam"]
@@ -48,7 +45,7 @@ const Game1 = () => {
         ranOrder()
         setTimer(15)
         setGameover(false)
-        document.getElementById("bg-song").play()
+        document.getElementById("click1").play()
     }
 
     // This is the timer
@@ -68,18 +65,19 @@ const Game1 = () => {
 
     return (
         <Main>
-            <audio id="bg-song" src="/sounds/click.mp3" />
+            <audio id="click1" src="/sounds/click.mp3" />
+            <audio id="click2" src="/sounds/click2.mp3" />
 
             <button onClick={startGame} disabled={game}>Start Game</button>
             {
                 highscore
                 ?
                 <HighScore>
-                High Scores:
-                {highscore.map(elem => {
+                Top 3 High Scores:
+                {highscore.slice(0, 3).map(elem => {
                     return (
                         <>
-                            <div>{elem.name}'s score is {elem.score} points</div>
+                            <div>{elem.name} - {elem.score}</div>
                         </>
                     )
                 })}
