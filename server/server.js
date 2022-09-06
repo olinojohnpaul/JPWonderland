@@ -6,11 +6,6 @@ const {
 
 // This is how I express my backend
 express()
-
-    .get("/hi", (req, res) => {
-        res.status(200).json({status: 200, message: "success"});
-    })
-
     // Getting all scores endpoint
     .get("/get-scores", getScores)
 

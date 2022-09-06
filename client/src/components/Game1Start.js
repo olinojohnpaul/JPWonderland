@@ -2,7 +2,7 @@ import { useState } from "react"
 import styled from "styled-components"
 
 // This component is when the game starts
-const Game1Start = ({topPick, midPick, botPick, ranOrder, timer}) => {
+const Game1Start = ({topPick, midPick, botPick, ranOrder, timer, gameover}) => {
     // States necessary
     const [top, setTop] = useState("")
     const [mid, setMid] = useState("")
@@ -75,7 +75,7 @@ const Game1Start = ({topPick, midPick, botPick, ranOrder, timer}) => {
                     <div>{bot}</div>
                 </DrinkWrap>
             </div>
-            <button onClick={submitDrink}>Submit Drink</button>
+            <button onClick={submitDrink} disabled={gameover}>Submit Drink</button>
             <div>
                 Timer: {timer}
             </div>
