@@ -122,6 +122,13 @@ const Main = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    background-image: url("/images/sunny.jpg");
+    padding: 10px;
+    height: 100vh;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 
     span {
         font-weight: bold;

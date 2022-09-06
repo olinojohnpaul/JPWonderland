@@ -28,6 +28,9 @@ const Main = styled.nav`
     gap: 10px;
     justify-content: space-evenly;
     margin-bottom: 20px;
+    background-color: aliceblue;
+    align-items: center;
+    margin: 0;
 
     a {
         background-color: antiquewhite;
@@ -38,6 +41,7 @@ const Main = styled.nav`
 
     a:hover {
         background-color: aliceblue;
+        border: 2px solid antiquewhite;
     }
 `
 

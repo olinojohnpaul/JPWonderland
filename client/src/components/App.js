@@ -5,18 +5,29 @@ import Game1 from "./Game1";
 import Header from "./Header";
 import HomePage from "./HomePage";
 import ShopPage from "./ShopPage";
+import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
     const [highscore, setHighscore] = useState("")
+    const [weather, setWeather] = useState("")
 
     useEffect(() => {
         fetch("/get-scores")
             .then(res => res.json())
             .then(data => setHighscore(data.data))
     }, [])
+
+    useEffect(() => {
+        fetch("http://api.weatherapi.com/v1")
+            .then(res => res.json())
+            .then(data => setWeather(data.data))
+    }, [])
+
+    console.log(weather)
     
     return (
         <BrowserRouter>
+            <GlobalStyles />
             <Header />
             <Routes>
                 <Route path="/" element={<HomePage />} />
