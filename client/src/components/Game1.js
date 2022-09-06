@@ -5,7 +5,7 @@ import useInterval from "../hooks/use-interval";
 import Game1Over from "./Game1Over";
 
 // This component is for the Bubble Tea Game
-const Game1 = ({highscore}) => {
+const Game1 = ({highscore, weather}) => {
     // Some necessary states
     const [game, setGame] = useState(false)
     const [top, setTop] = useState("")
@@ -15,6 +15,7 @@ const Game1 = ({highscore}) => {
     const [timer, setTimer] = useState("")
     const [gameover, setGameover] = useState(false)
     const [myScore, setMyScore] = useState(0)
+    const [sunny, setSunny] = useState(false)
 
     // Sorts scores by highest to lowest
     if (highscore) {
@@ -46,6 +47,12 @@ const Game1 = ({highscore}) => {
         setTimer(15)
         setGameover(false)
         document.getElementById("click1").play()
+
+        if (weather.current.condition.text === "Sunny") {
+            setSunny(true)
+        } else {
+            setSunny(false)
+        }
     }
 
     // This is the timer
@@ -64,11 +71,12 @@ const Game1 = ({highscore}) => {
     }, 1000)
 
     return (
-        <Main>
+        <Main sunny={sunny}>
             <audio id="click1" src="/sounds/click.mp3" />
             <audio id="click2" src="/sounds/click2.mp3" />
 
             <button onClick={startGame} disabled={game}>Start Game</button>
+            <div>Current weather is {weather.current.condition.text}</div>
             {
                 highscore
                 ?
@@ -104,7 +112,7 @@ const Game1 = ({highscore}) => {
                 myScore={myScore}
                 setMyScore={setMyScore}
                 />
-                : <div>Click Start Game to start game</div>
+                : <div className="instructions">Click Start Game to start game</div>
             }
             <div>Score: {myScore}</div>
             {
@@ -122,7 +130,7 @@ const Main = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    background-image: url("/images/sunny.jpg");
+    background-image: var(${({sunny}) => sunny ? "--sunny" : "--default"});
     padding: 10px;
     height: 100vh;
     background-color: white;
@@ -132,6 +140,14 @@ const Main = styled.div`
 
     span {
         font-weight: bold;
+    }
+
+    .instructions {
+        font-weight: bold;
+        font-size: large;
+        background-color: white;
+        padding: 5px;
+        border-radius: 5px;
     }
 `
 

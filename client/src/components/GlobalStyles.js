@@ -1,6 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
+    :root {
+        --sunny: url("/images/sunny.jpg");
+        --rainy: url("/images/rainy.jpg");
+        --default: url("images/default.jpg");
+    }
+
     /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126
     License: none (public domain)

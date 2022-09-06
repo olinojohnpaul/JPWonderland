@@ -3,6 +3,7 @@ const express = require("express");
 const {
     getScores,
     postScore,
+    getWeather,
 } = require("./handlers");
 
 // This is how I express my backend
@@ -14,6 +15,9 @@ express()
 
     // Posting high score to mongodb
     .post("/post-score", postScore)
+
+    // Weather API
+    .get("/get-weather", getWeather)
 
     // Catches any excess endpoints
     .get("*", (req, res) => {
