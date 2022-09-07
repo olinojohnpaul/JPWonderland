@@ -148,6 +148,18 @@ const Main = styled.div`
         padding: 5px;
         background-color: white;
     }
+
+    button {
+        color: white;
+        background-color: black;
+        border-radius: 5px;
+        font-size: 20px;
+    }
+
+    button:hover {
+        color: black;
+        background-color: white;
+    }
 `
 
 const DrinkWrap = styled.div`

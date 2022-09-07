@@ -75,7 +75,7 @@ const Game1 = ({highscore, weather}) => {
             <audio id="click1" src="/sounds/click.mp3" />
             <audio id="click2" src="/sounds/click2.mp3" />
 
-            <button onClick={startGame} disabled={game}>Start Game</button>
+            <button onClick={startGame} disabled={game} className="startButton">Start Game</button>
             <div className="text">Current weather is {weather.current.condition.text}</div>
             {
                 highscore
@@ -154,6 +154,21 @@ const Main = styled.div`
         padding: 5px;
         background-color: white;
         border-radius: 5px;
+    }
+
+    .startButton {
+        background-color: darkblue;
+        border-radius: 10px;
+        border-style: none;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 10px 15px;
+    }
+
+    .startButton:hover,
+    .startButton:focus {
+        background-color: blue;
     }
 `
 

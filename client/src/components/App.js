@@ -8,6 +8,7 @@ import ShopPage from "./ShopPage";
 import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
+    // States needed
     const [highscore, setHighscore] = useState("")
     const [weather, setWeather] = useState("")
 
@@ -24,15 +25,6 @@ const App = () => {
             .then(res => res.json())
             .then(data => setWeather(data.data))
     }, [])
-
-    // Changes background depending on the weather
-    // if (weather) {
-    //     if (weather.current.condition.text === "Sunny") {
-    //         setWeatherbg("/images/sunny.jpg")
-    //     } else {
-    //         setWeatherbg("/images/rainy.jpg")
-    //     }
-    // }
     
     return (
         <BrowserRouter>

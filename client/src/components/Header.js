@@ -31,6 +31,7 @@ const Main = styled.nav`
     background-color: aliceblue;
     align-items: center;
     margin: 0;
+    font-weight: bolder;
 
     a {
         background-color: antiquewhite;
