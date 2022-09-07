@@ -131,7 +131,7 @@ const Main = styled.div`
     align-items: center;
     gap: 10px;
     background-image: var(${({sunny}) => sunny ? "--sunny" : "--default"});
-    padding: 10px;
+    padding: 50px;
     height: 100vh;
     background-color: white;
     background-repeat: no-repeat;
