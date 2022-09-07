@@ -4,6 +4,8 @@
 ### Currently, there is only a single game, a boba serving dine-n-dash type game.
 ### Try to get the high score. Good luck!
 
+---
+
 ### WIP (Work-in-progress)
 - Shop (To buy stickers and backgrounds)
 - A better Home Page
