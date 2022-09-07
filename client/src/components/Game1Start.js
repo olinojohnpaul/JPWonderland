@@ -46,15 +46,15 @@ const Game1Start = ({topPick, midPick, botPick, ranOrder, timer, setTimer, gameo
         }
 
         // Next level/stage
-        if (myScore === 400) {
+        if (myScore === 200) {
             setStage(2)
-        } else if (myScore === 900) {
+        } else if (myScore === 500) {
             setStage(3)
-        } else if (myScore === 1400) {
+        } else if (myScore === 800) {
             setStage(4)
-        } else if (myScore === 1900) {
+        } else if (myScore === 1100) {
             setStage(5)
-        } else if (myScore === 2400) {
+        } else if (myScore === 1400) {
             setStage(6)
         }
 
@@ -112,7 +112,7 @@ const Game1Start = ({topPick, midPick, botPick, ranOrder, timer, setTimer, gameo
             <div className="timer">
                 Timer: {timer}
             </div>
-            <div>
+            <div className="text">
                 Stage: {stage}
             </div>
             <div>
@@ -144,6 +144,9 @@ const Main = styled.div`
         font-size: 30px;
         font-weight: bold;
         color: red;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: white;
     }
 `
 

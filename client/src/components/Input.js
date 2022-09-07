@@ -7,7 +7,7 @@ const Input = ({type, placeholder, name, required, handleChange}) => {
             placeholder={placeholder} 
             required={required} 
             onChange={(e) => handleChange(name, e.target.value)}
-            maxLength="3"
+            maxLength="10"
         />
     )
 }

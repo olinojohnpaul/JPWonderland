@@ -76,7 +76,7 @@ const Game1 = ({highscore, weather}) => {
             <audio id="click2" src="/sounds/click2.mp3" />
 
             <button onClick={startGame} disabled={game}>Start Game</button>
-            <div>Current weather is {weather.current.condition.text}</div>
+            <div className="text">Current weather is {weather.current.condition.text}</div>
             {
                 highscore
                 ?
@@ -93,7 +93,7 @@ const Game1 = ({highscore, weather}) => {
                 :
                 <div>High Score List Loading...</div>
             }
-            <div>{customer}</div>
+            <div className="text">{customer}</div>
             <Order>
                 <div>Top: <span>{top}</span></div>
                 <div>Middle: <span>{mid}</span></div>
@@ -114,7 +114,7 @@ const Game1 = ({highscore, weather}) => {
                 />
                 : <div className="instructions">Click Start Game to start game</div>
             }
-            <div>Score: {myScore}</div>
+            <div className="text">Score: {myScore}</div>
             {
                 gameover &&
                 <Game1Over 
@@ -149,6 +149,12 @@ const Main = styled.div`
         padding: 5px;
         border-radius: 5px;
     }
+
+    .text {
+        padding: 5px;
+        background-color: white;
+        border-radius: 5px;
+    }
 `
 
 const HighScore = styled.div`
@@ -157,12 +163,14 @@ const HighScore = styled.div`
     text-align: center;
     border: 2px solid lightblue;
     padding: 5px;
+    background-color: white;
 `
 
 const Order = styled.div`
     border: 2px solid lightgreen;
     padding: 5px;
     text-align: center;
+    background-color: white;
 `
 
 export default Game1
