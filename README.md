@@ -2,7 +2,8 @@
 
 ---
 
-### Welcome to my digital arcade, currently, there is only a single game, a boba serving dine-n-dash type game.
+### Welcome to my digital arcade!
+### Currently, there is only a single game, a boba serving dine-n-dash type game.
 ### Try to get the high score. Good luck!
 
 ### WIP (Work-in-progress)
@@ -12,3 +13,9 @@
 - More Games
 - Website currency you earn for playing
 - Profile page / Sign-up features / Auth0
+
+### Screenshots
+![Home Page](screenshots/ss1.png)
+![Boba Game](screenshots/ss2.png)
+![Shop Page](screenshots/ss3.png)
+![About Page](screenshots/ss4.png)
