@@ -16,6 +16,12 @@
 
 ### Screenshots
 ![Home Page](screenshots/ss1.png)
+---
 ![Boba Game](screenshots/ss2.png)
+---
 ![Shop Page](screenshots/ss3.png)
+---
 ![About Page](screenshots/ss4.png)
+---
+
+### Thank you for checking my project out!
